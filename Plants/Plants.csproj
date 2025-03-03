@@ -45,6 +45,8 @@
       <Content Include="Analysis.puml" />
       <Content Include="Contract.puml" />
       <Content Include="DomainModel.puml" />
+      <Content Include="Requirements.md" />
+      <Content Include="RequirementsToDomain" />
       <Content Include="UseCases.puml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
