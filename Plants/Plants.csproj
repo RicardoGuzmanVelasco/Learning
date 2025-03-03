@@ -48,6 +48,7 @@
       <Content Include="Requirements.md" />
       <Content Include="RequirementsToDomain" />
       <Content Include="UseCases.puml" />
+      <Content Include="UseCasesSpecification.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
