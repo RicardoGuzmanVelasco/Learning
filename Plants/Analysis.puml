@@ -1,3 +1,18 @@
 ﻿@startuml
-skin rose
+skin rose 
+
+entity Maceta
+entity Planta
+
+control Regar
+
+boundary Tierra
+boundary Regadera
+
+Regar --> Maceta : tienes planta?
+Maceta --> Planta
+
+Regar --> Tierra : mójate
+Regar --> Regadera
+
 @enduml

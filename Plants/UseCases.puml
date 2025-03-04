@@ -1,3 +1,22 @@
 ﻿@startuml
 skin rose
+
+actor Jugador
+actor PasoDelTiempo
+
+
+package Jardinería{
+usecase Plantar
+usecase Regar
+usecase HacerCrecer
+}
+package Temporal{
+usecase PararTiempo
+usecase AvanzarCiclo
+usecase AvanzarTiempo
+}
+
+PasoDelTiempo -- HacerCrecer
+PasoDelTiempo -- AvanzarTiempo
+
 @enduml
