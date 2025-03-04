@@ -43,7 +43,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Analysis.puml" />
-      <Content Include="Contract.puml" />
+      <Content Include="Contract" />
       <Content Include="DomainModel.puml" />
       <Content Include="Requirements.md" />
       <Content Include="RequirementsToDomain" />

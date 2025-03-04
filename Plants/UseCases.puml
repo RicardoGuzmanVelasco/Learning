@@ -1,9 +1,9 @@
 ﻿@startuml
 skin rose
+left to right direction 
 
 actor Jugador
 actor PasoDelTiempo
-
 
 package Jardinería{
 usecase Plantar
@@ -11,12 +11,21 @@ usecase Regar
 usecase HacerCrecer
 }
 package Temporal{
-usecase PararTiempo
+usecase "Parar/Reanudar\nTiempo" as PararTiempo
 usecase AvanzarCiclo
+usecase SecarSuelo
 usecase AvanzarTiempo
 }
 
-PasoDelTiempo -- HacerCrecer
-PasoDelTiempo -- AvanzarTiempo
+AvanzarCiclo .> SecarSuelo : includes
+AvanzarTiempo .> AvanzarCiclo : includes
+
+PasoDelTiempo -u- HacerCrecer
+PasoDelTiempo -u- AvanzarTiempo
+
+Jugador -- Plantar
+Jugador -- Regar
+Jugador -- PararTiempo
+Jugador -- AvanzarCiclo
 
 @enduml
