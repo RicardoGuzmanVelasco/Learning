@@ -8,11 +8,15 @@ control Regar
 
 boundary Tierra
 boundary Regadera
+boundary EncogerseDeHombros
 
-Regar -u-> Maceta : tienes planta?
+Regar -u-> Maceta : 3. tienes planta?
 Maceta -> Planta
 
-Regar --> Tierra : mójate
-Regar -l-> Regadera : dime qué maceta\nquieren regar
+Regar -l-> Regadera : 1. aparece
+Regar -l-> Regadera : 2. dime qué maceta\nquieren regar
+Regar --> Tierra : 4. mójate
+Regar --> EncogerseDeHombros : 3a. no hay planta
+Regar --> EncogerseDeHombros : 3b. ya está regada
 
 @enduml
