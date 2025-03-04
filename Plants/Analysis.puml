@@ -9,10 +9,10 @@ control Regar
 boundary Tierra
 boundary Regadera
 
-Regar --> Maceta : tienes planta?
-Maceta --> Planta
+Regar -u-> Maceta : tienes planta?
+Maceta -> Planta
 
 Regar --> Tierra : mójate
-Regar --> Regadera
+Regar -l-> Regadera : dime qué maceta\nquieren regar
 
 @enduml
