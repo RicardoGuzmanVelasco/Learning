@@ -1,0 +1,35 @@
+REGADERA
+
+Responsabilidades:
+    - Dar feedback visual de que está el modo regadera activao.
+    - Proporcionar una manera de que se elija una maceta.
+    
+Operaciones:
+    - Encenderse/Apagarse.
+    - Moverse / seleccionar maceta.
+    
+Contrato:
+    - si está encendida no deben llamar a la operación encender. 
+    - si está apagada no deben llamar a la operación apagar.
+
+
+MACETA
+
+Responsabilidades: 
+    - Albergar (o no) una planta.
+    - Saber si su tierra está mojada.
+    
+Operación:
+    - Estás vacía?
+    - Estás mojada?
+    - Riégate.
+    - Quitar planta.
+    
+Contrato:
+    - Si está vacía no debe regarse. Precondición.
+    - Si está mojada no debe regarse. Precondición.
+    - Duda: Si está vacía no debe preguntarse si está mojada.
+    - Si está vacía no tiene planta. Invariante.
+    - Si quito la planta, se queda vacía. Postcondición.
+  
+    
