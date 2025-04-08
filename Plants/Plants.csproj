@@ -43,13 +43,13 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Analysis.puml" />
-      <Content Include="Contract" />
-      <Content Include="DomainModel.puml" />
-      <Content Include="Requirements.md" />
-      <Content Include="RequirementsToDomain" />
-      <Content Include="UseCases.puml" />
-      <Content Include="UseCasesSpecification.md" />
+      <Content Include="Properties\Analysis.puml" />
+      <Content Include="Properties\Contract" />
+      <Content Include="Properties\DomainModel.puml" />
+      <Content Include="Properties\Requirements.md" />
+      <Content Include="Properties\RequirementsToDomain" />
+      <Content Include="Properties\UseCases.puml" />
+      <Content Include="Properties\UseCasesSpecification.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

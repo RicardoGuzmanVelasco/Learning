@@ -16,12 +16,5 @@ namespace Plants
             
             IsWet = true;
         }
-
-        public void ArrancarPlant()
-        {
-            Debug.Assert(!IsEmpty);
-            
-            plantId = null;
-        }
     }
 }
