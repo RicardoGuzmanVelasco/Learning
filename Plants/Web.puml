@@ -1,0 +1,52 @@
+﻿@startuml
+skin rose
+allowmixing
+
+package WalkingSkeleton1{
+    rectangle Host
+    rectangle Netlify #technology
+    rectangle DNS <<connects>>
+    rectangle Domain
+    rectangle CloudflarePages <<other>> #technology 
+    rectangle GitHubPages <<other>> #technology 
+    
+    Netlify --|> Host
+    CloudflarePages -|> Host
+    GitHubPages -u-|> Host
+    Host <. DNS
+    DNS .> Domain
+    Netlify --> Domain : provides one free
+}
+
+package WalkingSkeleton2{
+    rectangle NameCheap #technology
+    rectangle Vendor
+    rectangle CustomDNS <<DNS>>
+    
+    NameCheap --> CustomDNS
+    Vendor --> Domain : provides one paid
+    NameCheap -l-|> Vendor
+}
+
+package WalkingSkeleton3{
+    rectangle Gatsby <<React-based>> #technology
+    rectangle Website
+    rectangle Repo
+    rectangle Bot
+    rectangle Template
+    rectangle WebFramework
+    rectangle Hugo <<other>> #technology
+    
+    Gatsby --|> WebFramework
+    Hugo -u-|> WebFramework
+    
+    Gatsby --> Website : builds
+    Netlify *-- Bot
+    Bot ..> Repo : listens
+    Template ..> Gatsby : uses
+    Repo -|> Template : forks
+    Bot ..> Website : deploys
+    
+    Hugo -u-> Website : builds\nstatic
+}
+@enduml

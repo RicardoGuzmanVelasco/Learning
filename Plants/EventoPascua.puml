@@ -1,0 +1,35 @@
+﻿@startuml
+skin rose
+
+rectangle Evento
+rectangle Pascua
+rectangle Día
+package Gameplay{
+rectangle HuevoDePascua <<o solo Huevo>>
+rectangle Fase
+rectangle Spawn <<¿dónde?>>
+rectangle Contador
+}
+rectangle PopupEvento{
+rectangle BarraExp
+rectangle Milestone
+rectangle Premio <<a veces\ndice Recompensa>>
+rectangle PuntosExp
+}
+
+Pascua -u-|> Evento
+Pascua --> "14  " Día 
+
+Contador --> HuevoDePascua : muestra total\npresentes
+HuevoDePascua --> Fase : solo se consigue\nal completar
+Spawn --> HuevoDePascua
+Spawn --> Día : único cada
+HuevoDePascua ..> Día : spawn\na partir de un
+
+BarraExp *-- Milestone
+Milestone *-- PuntosExp : una serie de
+Milestone o- "1" Premio
+
+HuevoDePascua .> PuntosExp : conseguirlo da
+
+@enduml
