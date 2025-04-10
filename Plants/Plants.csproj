@@ -43,8 +43,6 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="EventoPascua.puml" />
-      <Content Include="EventoPascuaCasosUso.puml" />
       <Content Include="Properties\Analysis.puml" />
       <Content Include="Properties\Contract" />
       <Content Include="Properties\DomainModel.puml" />
@@ -52,7 +50,6 @@
       <Content Include="Properties\RequirementsToDomain" />
       <Content Include="Properties\UseCases.puml" />
       <Content Include="Properties\UseCasesSpecification.md" />
-      <Content Include="Web.puml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
