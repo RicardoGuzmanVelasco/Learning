@@ -15,5 +15,13 @@ namespace Plants
         {
             Assert.That(new Pot().IsWet, Is.False);
         }
+        
+        [Test]
+        public void WateringPot_WetsIt()
+        {
+            var pot = new Pot();
+            pot.Water();
+            Assert.That(pot.IsWet, Is.True);
+        }
     }
 }
