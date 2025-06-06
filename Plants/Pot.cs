@@ -9,6 +9,14 @@ namespace Plants
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
         public bool IsWet { get; private set; }
         
+        public void SowSeed(string id)
+        {
+            Debug.Assert(IsEmpty);
+            Debug.Assert(!string.IsNullOrEmpty(id));
+            
+            plantId = id;
+        }
+        
         public void Water()
         {
             Debug.Assert(!IsEmpty);

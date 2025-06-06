@@ -17,9 +17,18 @@ namespace Plants
         }
         
         [Test]
+        public void SowSeed_SoPotIsNotEmpty()
+        {
+            var pot = new Pot();
+            pot.SowSeed("anySeed");
+            Assert.That(pot.IsEmpty, Is.False);
+        }
+        
+        [Test]
         public void WateringPot_WetsIt()
         {
             var pot = new Pot();
+            pot.SowSeed("anySeed");
             pot.Water();
             Assert.That(pot.IsWet, Is.True);
         }
