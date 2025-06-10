@@ -6,6 +6,7 @@ namespace Plants
     public class Pot
     {
         string plantId;
+        TimeSpan timeSinceLastWatering;
         
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
         public bool IsWet { get; private set; }
@@ -24,12 +25,20 @@ namespace Plants
             Debug.Assert(!IsWet);
             
             IsWet = true;
+            timeSinceLastWatering = TimeSpan.Zero;
         }
-
+        
         public void PassTime(TimeSpan delta)
         {
             Debug.Assert(delta >= TimeSpan.Zero);
-            IsWet = delta.TotalSeconds <= 1;
+            timeSinceLastWatering += delta;
+             
+            IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
+        }
+
+        static TimeSpan AssumedTechDebtTimeToNotWet()
+        {
+            return TimeSpan.FromSeconds(1);
         }
     }
 }

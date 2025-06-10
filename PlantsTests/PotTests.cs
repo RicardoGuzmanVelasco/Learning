@@ -43,7 +43,8 @@ namespace Plants
             pot.SowSeed("anySeed");
             pot.Water();
 
-            pot.PassTime(TimeSpan.MaxValue);
+            pot.PassTime(TimeSpan.FromSeconds(0.5));
+            pot.PassTime(TimeSpan.FromSeconds(0.6));
             
             Assert.That(pot.IsWet, Is.False);
         }
@@ -56,6 +57,20 @@ namespace Plants
             pot.Water();
 
             pot.PassTime(TimeSpan.FromSeconds(1));
+            
+            Assert.That(pot.IsWet, Is.True);
+        }
+        
+        [Test]
+        public void aklsdfjasdlkf()
+        {
+            var pot = new Pot();
+            pot.SowSeed("anySeed");
+            pot.Water();
+            pot.PassTime(TimeSpan.FromSeconds(2));
+            
+            pot.Water();
+            pot.PassTime(TimeSpan.FromSeconds(.5));
             
             Assert.That(pot.IsWet, Is.True);
         }
