@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace Plants
 {
@@ -23,6 +24,12 @@ namespace Plants
             Debug.Assert(!IsWet);
             
             IsWet = true;
+        }
+
+        public void PassTime(TimeSpan delta)
+        {
+            Debug.Assert(delta >= TimeSpan.Zero);
+            IsWet = delta.TotalSeconds <= 1;
         }
     }
 }
