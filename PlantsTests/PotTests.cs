@@ -62,7 +62,7 @@ namespace Plants
         }
         
         [Test]
-        public void aklsdfjasdlkf()
+        public void WaterAgain_AfterThePotBecameDry_WetsThePot()
         {
             var pot = new Pot();
             pot.SowSeed("anySeed");
