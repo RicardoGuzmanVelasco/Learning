@@ -1,0 +1,5 @@
+- [hecho] crece un brote si pasa un día en una maceta regada.
+- NO crece un brote si pasa un día en una maceta seca.
+- crece un tallo si pasa un día en una maceta con un brote.
+- crece una planta si pasa un día en una maceta con un tallo.
+- crece una planta con flores si pasa un día en una maceta con una planta.
