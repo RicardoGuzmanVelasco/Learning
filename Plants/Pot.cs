@@ -10,6 +10,7 @@ namespace Plants
         
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
         public bool IsWet { get; private set; }
+        public bool HasSprout => true;
         
         public void SowSeed(string id)
         {

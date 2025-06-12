@@ -74,10 +74,17 @@ namespace Plants
             
             Assert.That(pot.IsWet, Is.True);
         }
+        
+        [Test]
+        public void InWetPotWithSeed_AfterSomeTime_SproutSpawns()
+        {
+            var pot = new Pot();
+            pot.SowSeed("anySeed");
+            pot.Water();
+            
+            pot.PassTime(TimeSpan.FromSeconds(1));
+            
+            Assert.That(pot.HasSprout, Is.True);
+        }
     }
-    
-    /*
-     * la planta crece si está regada y pasa el tiempo.
-     * 
-     */
 }
