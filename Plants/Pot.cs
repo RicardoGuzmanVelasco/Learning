@@ -39,7 +39,7 @@ namespace Plants
 
         static TimeSpan AssumedTechDebtTimeToNotWet()
         {
-            return TimeSpan.FromSeconds(1);
+            return TimeSpan.FromDays(1);
         }
     }
 }
