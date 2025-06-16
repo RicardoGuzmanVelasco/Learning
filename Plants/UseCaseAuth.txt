@@ -1,0 +1,33 @@
+﻿LOGUEARSE AUTOMÁTICAMENTE (AUTOLOGIN)
+Si queremos sacarle el máximo partido a la network, necesitamos un login al menos para comunicarnos con ella.
+El hecho de que sea automático es una barrera menos para el jugador y evitamos que cancele PORQUE QUEREMOS QUE SEAN PROVIDER.
+
+Precondiciones
+El usuario acaba de abrir el juego.
+El usuario tiene conexión a internet cuando va a empezar a loguearse.
+
+Poscondiciones (de éxito)
+Es usuario provider.
+
+Escenario de éxito:
+1. El sistema intenta loguear con Google Play.
+2. Google Play devuelve que el login ha ido bien.
+3. El sistema intenta loguear con el backend.
+4. Nota: si el backend no encuentra el usuario, lo crea automáticamente.
+5. El backend devuelve que el login ha ido bien.
+6. El sistema da feedback visual del tipo de usuario tras el login.
+
+Escenario alternativo: el login no hay ido bien
+
+Escenario alternativo: la conexión con Google Play no va bien
+1. asdklfadj
+2. aklsdjfalskdf
+Nota: el usuario pasa a ser device en lugar de provider.
+
+Escenario alternativo: se pierde la conexión a Internet al intentar loguear con el backend
+3b. Se vuelve a intentar, no hace falta volver al paso 1 porque se reusa la misma sesión de Google Play.
+4b. Si hay tres intentos y no sale nada, sacamos un popup de que no se ha podido...
+    Lo mismo si hay un timeout de 10 segundos.
+
+Por definir: se pierde la conexión a Internet antes de loguear con Google Play. ¿Qué hacemos?
+

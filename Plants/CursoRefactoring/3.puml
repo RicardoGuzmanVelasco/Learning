@@ -1,0 +1,17 @@
+@startuml
+skin rose
+allow_mixing
+
+actor "Cliente final" as Cliente
+
+cloud "Nuestra organización" as NuestraOrganizacion{
+node "Nuestro producto" as NuestroProducto
+actor QA
+component "Nuestros sistemas" as NuestroSistema
+NuestroProducto <-- NuestroSistema : construyen
+}
+
+Cliente - NuestroProducto : usa
+QA -l- NuestroProducto : prueba
+
+@enduml

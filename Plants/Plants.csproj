@@ -1,21 +1,70 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>Plants</RootNamespace>
-    <AssemblyName>Plants</AssemblyName>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="CursoRefactoring\*.puml" />
-    <Content Include="Properties\Analysis.puml" />
-    <Content Include="Properties\Contract" />
-    <Content Include="Properties\DomainModel.puml" />
-    <Content Include="Properties\Requirements.md" />
-    <Content Include="Properties\RequirementsToDomain" />
-    <Content Include="Properties\UseCases.puml" />
-    <Content Include="Properties\UseCasesSpecification.md" />
-  </ItemGroup>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A990E283-2B59-4668-94EA-D7491EC00ACE}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Plants</RootNamespace>
+        <AssemblyName>Plants</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Pot.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Charla DotNet\DotNet Ecosystem.puml" />
+      <Content Include="Charla DotNet\UnityCtorDesignProblem.puml" />
+      <Content Include="CursoRefactoring\1.puml" />
+      <Content Include="CursoRefactoring\2.puml" />
+      <Content Include="CursoRefactoring\3.puml" />
+      <Content Include="CursoRefactoring\4.puml" />
+      <Content Include="CursoRefactoring\5.puml" />
+      <Content Include="Properties\Analysis.puml" />
+      <Content Include="Properties\Contract" />
+      <Content Include="Properties\DomainModel.puml" />
+      <Content Include="Properties\Requirements.md" />
+      <Content Include="Properties\RequirementsToDomain" />
+      <Content Include="Properties\UseCases.puml" />
+      <Content Include="Properties\UseCasesSpecification.md" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
 
 </Project>

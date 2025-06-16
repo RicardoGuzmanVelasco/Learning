@@ -1,0 +1,38 @@
+﻿@startuml
+skin rose
+
+package "Standard C# (.NET / Console App / Web API)" as StandardCSharp #application {
+    class SomeDependency
+
+    class AnyClassPOCO {
+        -SomeDependency _service
+        +AnyClassPOCO(ServiceA service)
+    }
+
+    note top of AnyClassPOCO
+      Pure C# class (POCO)
+      uses **constructor injection**
+      for loose coupling and testability
+    end note
+}
+
+package "Unity MonoBehaviour" #lightgray {
+    class SomeUnityDependency
+    class UnityComponent {
+        -[SerializeField] SomeDependency service
+        +Awake()
+    }
+
+    note top of UnityComponent #FFE0E0
+       ** ⚠⚠⚠ No constructor support ⚠⚠⚠ **
+      Instantiation is done by the C++ engine layer.
+      You must use Unity API to set it via
+      Scene/Prefab/DepInjTool → **tightly coupled to Unity lifecycle.**
+    end note
+}
+
+AnyClassPOCO --> SomeDependency : via constructor
+UnityComponent --> SomeUnityDependency : via [Serialized field] or \nFind Unity API
+UnityComponent --> SomeDependency : via ctor, self-injection,\ntool-based injection...
+
+@enduml
