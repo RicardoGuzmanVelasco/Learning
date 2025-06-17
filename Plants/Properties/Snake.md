@@ -1,0 +1,3 @@
+- Dominio de tiempo para hablar de ciclos, no de días directamente.
+- Hemos hecho mal el crecimiento porque parece que también crece sin regar.
+  - Le hemos preguntado movidas a diseño a ver qué dicen y nos adaptaremos.

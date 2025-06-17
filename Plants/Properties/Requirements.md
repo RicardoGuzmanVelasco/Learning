@@ -21,6 +21,7 @@ Avanzar ante ciertos logros o eventos permitirá hacerse con semillas de diferen
 - Ese tiempo de crecimiento cada vez es mayor y se corresponde con la fase de la planta.
   - Si por ejemplo está en fase Planta Joven, el tiempo de crecimiento a Planta Adulta es de tres ciclos.
 - **Regar una planta** acelera temporalmente su crecimiento (durante un día, crecerá al doble de velocidad).
+  - Esto está sin especificar bien, cómo leches va. Dandos ejemplos o algo.
 
 ### ⏳ Gestión del Tiempo de Crecimiento
 
