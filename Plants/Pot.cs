@@ -5,12 +5,17 @@ namespace Plants
 {
     public class Pot
     {
-        string plantId;
-        TimeSpan timeSinceLastWatering;
-        
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
+        
+        TimeSpan timeSinceLastWatering;
         public bool IsWet { get; private set; }
+
+        #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
+        string plantId;
         public bool HasSprout { get; private set; }
+        public bool HasStem { get; private set; }
+        public bool HasFlowers { get; private set; }
+        #endregion
         
         public void SowSeed(string id)
         {
