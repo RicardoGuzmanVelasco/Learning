@@ -86,5 +86,16 @@ namespace Plants
             
             Assert.That(pot.HasSprout, Is.True);
         }
+        
+        [Test]
+        public void InDryPotWithSeed_AfterSomeTime_NoSproutSpawns()
+        {
+            var pot = new Pot();
+            pot.SowSeed("anySeed");
+            
+            pot.PassTime(TimeSpan.FromDays(1));
+            
+            Assert.That(pot.HasSprout, Is.False);
+        }
     }
 }

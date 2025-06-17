@@ -10,7 +10,7 @@ namespace Plants
         
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
         public bool IsWet { get; private set; }
-        public bool HasSprout => true;
+        public bool HasSprout { get; private set; }
         
         public void SowSeed(string id)
         {
@@ -24,7 +24,8 @@ namespace Plants
         {
             Debug.Assert(!IsEmpty);
             Debug.Assert(!IsWet);
-            
+
+            HasSprout = true;
             IsWet = true;
             timeSinceLastWatering = TimeSpan.Zero;
         }
