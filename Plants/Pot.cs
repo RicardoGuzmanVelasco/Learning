@@ -25,7 +25,6 @@ namespace Plants
             Debug.Assert(!IsEmpty);
             Debug.Assert(!IsWet);
 
-            HasSprout = true;
             IsWet = true;
             timeSinceLastWatering = TimeSpan.Zero;
         }
@@ -34,7 +33,10 @@ namespace Plants
         {
             Debug.Assert(delta >= TimeSpan.Zero);
             timeSinceLastWatering += delta;
-             
+            
+            if (IsWet)
+                HasSprout = true;
+            
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
 
