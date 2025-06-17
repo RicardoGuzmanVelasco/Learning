@@ -20,8 +20,10 @@ Avanzar ante ciertos logros o eventos permitirá hacerse con semillas de diferen
 - Cada fase tiene un aspecto visual distinto y un tiempo de crecimiento asociado.
 - Ese tiempo de crecimiento cada vez es mayor y se corresponde con la fase de la planta.
   - Si por ejemplo está en fase Planta Joven, el tiempo de crecimiento a Planta Adulta es de tres ciclos.
-- **Regar una planta** acelera temporalmente su crecimiento (durante un día, crecerá al doble de velocidad).
-  - Esto está sin especificar bien, cómo leches va. Dandos ejemplos o algo.
+- **Regar una maceta** hace que la planta crezca según pase el tiempo (durante un día, la maceta estará mojada).
+  - Dicho de otro modo, una planta no crece aunque pase el tiempo si su maceta no estaba regada.
+- **Abonar la maceta ** hace que la planta crezca más rápido.
+  - Por el momento hemos decidido que sea un 150% de rápido. Las cifras dependerán a futuro del abono usado.
 
 ### ⏳ Gestión del Tiempo de Crecimiento
 
@@ -34,18 +36,21 @@ El juego permite dos modos para gestionar el paso del tiempo:
 2. **Modo Automático**:
 
    - El juego avanza un ciclo de crecimiento cada cinco segundos en tiempo real.
+     - Hemos visto que no tenemos muy claro estos cinco segundos. Iremos probando esa cifra.
    - El jugador puede activar o desactivar este modo en cualquier momento.
 
 ### 🌟 Futuras Mejoras que se espera implementar
 
 - Herramientas o mejoras que incrementan la velocidad del crecimiento pasivo.
+  - Hemos añadido aquí el abono de momento, estamos experimentando aún con cómo usarlo.
+  - Sabemos que esto será muy cambiante todavía.
 - Sistemas automatizados de riego para optimizar el cultivo.
 - Time warping.
 - Diferentes tipos de plantas con fases y tiempos distintos.
   - Ejemplo: los cactus requieren mucha menos agua.
 - Diferentes tipos de requisitos para que una planta pase a su siguiente fase.
 - Eventos aleatorios que afectan el crecimiento de las plantas.
-- Mecánicas de interacción con las plantas más allá de regarlas: podar, fertilizar, etc.
+- Mecánicas de interacción con las plantas más allá de regarlas: podar, etc.
 - Mecánicas de interacción con el jardín: decoración, iluminación, etc.
   - Ejemplo: los hongos no crecen bien en la iluminación, las plantas necesitan cierta cantidad de luz para crecer.
 
