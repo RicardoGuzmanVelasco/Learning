@@ -98,7 +98,7 @@ namespace Plants
             Assert.That(pot.HasSprout, Is.False);
         }
         
-        [Test, Ignore("TODO: Implement this test")]
+        [Test]
         public void InWetPotWithSeed_AfterNotEnoughTime_NoSproutSpawns()
         {
             var pot = new Pot();

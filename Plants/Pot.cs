@@ -34,15 +34,15 @@ namespace Plants
             Debug.Assert(delta >= TimeSpan.Zero);
             timeSinceLastWatering += delta;
             
-            if (IsWet)
+            if (IsWet && timeSinceLastWatering > AssumedTechDebtTimeToSpawnSprout())
                 HasSprout = true;
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
 
         static TimeSpan AssumedTechDebtTimeToNotWet()
-        {
-            return TimeSpan.FromDays(1);
-        }
+            => TimeSpan.FromDays(1);
+        static TimeSpan AssumedTechDebtTimeToSpawnSprout()
+            => TimeSpan.FromDays(.75f);
     }
 }
