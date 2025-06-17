@@ -15,10 +15,10 @@ namespace Plants
         #endregion
 
         #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
-        enum PlantStage { None, Sprout, Stem, Flowers }
+        enum PlantStage { Seed, Sprout, Stem, Flowers }
         
         string plantId;
-        PlantStage stage = PlantStage.None;
+        PlantStage stage = PlantStage.Seed;
         public bool HasSprout => stage == PlantStage.Sprout;
         public bool HasStem => stage == PlantStage.Stem;
         public bool HasFlowers => stage == PlantStage.Flowers;
