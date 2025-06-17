@@ -7,8 +7,12 @@ namespace Plants
     {
         public bool IsEmpty => string.IsNullOrEmpty(plantId);
         
+        #region Esto es cohesivo, algo del tiempo o yo qué sé
         TimeSpan timeSinceLastWatering;
         public bool IsWet { get; private set; }
+        static TimeSpan AssumedTechDebtTimeToNotWet()
+            => TimeSpan.FromDays(1);
+        #endregion
 
         #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
         enum PlantStage { None, Sprout, Stem, Flowers }
@@ -18,6 +22,9 @@ namespace Plants
         public bool HasSprout => stage == PlantStage.Sprout;
         public bool HasStem => stage == PlantStage.Stem;
         public bool HasFlowers => stage == PlantStage.Flowers;
+        
+        static TimeSpan AssumedTechDebtTimeToSpawnSprout()
+            => TimeSpan.FromDays(.75f);
         #endregion
         
         public void SowSeed(string id)
@@ -47,10 +54,5 @@ namespace Plants
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
-
-        static TimeSpan AssumedTechDebtTimeToNotWet()
-            => TimeSpan.FromDays(1);
-        static TimeSpan AssumedTechDebtTimeToSpawnSprout()
-            => TimeSpan.FromDays(.75f);
     }
 }

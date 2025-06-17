@@ -9,18 +9,20 @@ rectangle Tiempo
 rectangle Ciclo
 rectangle Semilla
 rectangle Especie
+rectangle Mojada
 
 Jardín *-- Maceta
 Maceta *-- Planta
 Semilla --> Maceta : se planta en
-Planta - FaseCrecimiento : está en una 
+Planta -- FaseCrecimiento : está en una 
 
 Semilla --> Especie : pertenece a
 Planta --> Especie : pertenece a 
 
-FaseCrecimiento --> Tiempo : avanza con 
-Planta --> Tiempo : crece con el
+FaseCrecimiento --> Tiempo : avanza con
 
+Maceta ---> Mojada : si se riega
+Mojada --> Tiempo : se mantiene por
 
 Tiempo --> Ciclo : avanza
 
