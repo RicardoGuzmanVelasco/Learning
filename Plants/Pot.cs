@@ -15,12 +15,13 @@ namespace Plants
         #endregion
 
         #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
-        enum PlantStage { Seed, Sprout, Stem, Flowers }
+        enum PlantStage { Seed, Sprout, Stem, WithLeaves, Flowers }
         
         string plantId;
         PlantStage stage = PlantStage.Seed;
         public bool HasSprout => stage == PlantStage.Sprout;
         public bool HasStem => stage == PlantStage.Stem;
+        public bool HasLeaves => stage == PlantStage.WithLeaves;
         public bool HasFlowers => stage == PlantStage.Flowers;
         
         static TimeSpan AssumedTechDebtTimeToSpawnSprout()

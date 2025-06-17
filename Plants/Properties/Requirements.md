@@ -15,7 +15,7 @@ Avanzar ante ciertos logros o eventos permitirá hacerse con semillas de diferen
 ### 🌿 Crecimiento de las Plantas
 
 - Cada planta pasa por varias fases de crecimiento:
-  **Semilla → Brote → Planta Joven → Planta Adulta → Floración** ¿¿pregunta: no se marchita??
+  **Semilla → Brote → Tallo -> Con hojas → Floración** ¿¿pregunta: no se marchita??
 - El cambio entre fases ocurre después de un número determinado de **ciclos de crecimiento pasivo**.
 - Cada fase tiene un aspecto visual distinto y un tiempo de crecimiento asociado.
 - Ese tiempo de crecimiento cada vez es mayor y se corresponde con la fase de la planta.
