@@ -11,10 +11,13 @@ namespace Plants
         public bool IsWet { get; private set; }
 
         #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
+        enum PlantStage { None, Sprout, Stem, Flowers }
+        
         string plantId;
-        public bool HasSprout { get; private set; }
-        public bool HasStem { get; private set; }
-        public bool HasFlowers { get; private set; }
+        PlantStage stage = PlantStage.None;
+        public bool HasSprout => stage == PlantStage.Sprout;
+        public bool HasStem => stage == PlantStage.Stem;
+        public bool HasFlowers => stage == PlantStage.Flowers;
         #endregion
         
         public void SowSeed(string id)
@@ -40,7 +43,7 @@ namespace Plants
             timeSinceLastWatering += delta;
             
             if (IsWet && timeSinceLastWatering > AssumedTechDebtTimeToSpawnSprout())
-                HasSprout = true;
+                stage = PlantStage.Sprout;
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
