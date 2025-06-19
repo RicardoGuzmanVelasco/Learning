@@ -10,13 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Charla DotNet\DotNet Ecosystem.puml" />
-    <Content Include="Charla DotNet\UnityCtorDesignProblem.puml" />
-    <Content Include="CursoRefactoring\1.puml" />
-    <Content Include="CursoRefactoring\2.puml" />
-    <Content Include="CursoRefactoring\3.puml" />
-    <Content Include="CursoRefactoring\4.puml" />
-    <Content Include="CursoRefactoring\5.puml" />
     <Content Include="Properties\Analysis.puml" />
     <Content Include="Properties\Contract" />
     <Content Include="Properties\DomainModel.puml" />

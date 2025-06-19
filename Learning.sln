@@ -4,6 +4,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantsTests", "PlantsTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plants", "Plants\Plants.csproj", "{A990E283-2B59-4668-94EA-D7491EC00ACE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NonCohesiveStuff", "NonCohesiveStuff", "{2222599F-CF37-4004-A440-C8D12380B762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet", "DotNet", "{E64F87F7-A9F5-41DE-8F5A-296D2EF26557}"
+	ProjectSection(SolutionItems) = preProject
+		DotNet Ecosystem.puml = DotNet Ecosystem.puml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Refactoring", "Refactoring", "{B5F885FA-0DCD-4582-9F3B-0DA372E69049}"
+	ProjectSection(SolutionItems) = preProject
+		1.puml = 1.puml
+		2.puml = 2.puml
+		3.puml = 3.puml
+		4.puml = 4.puml
+		5.puml = 5.puml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +34,9 @@ Global
 		{A990E283-2B59-4668-94EA-D7491EC00ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A990E283-2B59-4668-94EA-D7491EC00ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A990E283-2B59-4668-94EA-D7491EC00ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E64F87F7-A9F5-41DE-8F5A-296D2EF26557} = {2222599F-CF37-4004-A440-C8D12380B762}
+		{B5F885FA-0DCD-4582-9F3B-0DA372E69049} = {2222599F-CF37-4004-A440-C8D12380B762}
 	EndGlobalSection
 EndGlobal
