@@ -55,5 +55,10 @@ namespace Plants
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
+
+        public void PassCycle()
+        {
+            stage = PlantStage.Sprout;
+        }
     }
 }
