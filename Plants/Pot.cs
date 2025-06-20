@@ -59,11 +59,11 @@ namespace Plants
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
 
-        private int cyclesCount = 0;
+        private int cyclesSinceSeeded = 0;
         public void PassCycle()
         {
-            cyclesCount++;
-            if (cyclesCount >= AssumedTechDebtCyclesToSprout())
+            cyclesSinceSeeded++;
+            if (cyclesSinceSeeded >= AssumedTechDebtCyclesToSprout())
             {
                 stage = PlantStage.Sprout;
             }
