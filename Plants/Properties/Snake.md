@@ -2,3 +2,4 @@
 - Asumimos que la planta está mojada un día de tiempo real (Deuda técnica)
 - Hemos hecho mal el crecimiento porque parece que también crece sin regar.
   - Le hemos preguntado movidas a diseño a ver qué dicen y nos adaptaremos.
+- Estamos trabajando que los ciclos pasan, pero no estamos enfocandonos en si estamos en modo manual o en modo automatico.
