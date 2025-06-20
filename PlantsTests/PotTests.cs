@@ -110,7 +110,7 @@ namespace Plants
             Assert.That(pot.HasSprout, Is.False);
         }
 
-        [Test, Ignore("jkahsd")]
+        [Test]
         public void InWetPotWithSeed_AfterEnoughCycles_SproutSpawns()
         {
             var pot = new Pot();
@@ -118,8 +118,22 @@ namespace Plants
             pot.Water();
 
             pot.PassCycle();
+            pot.PassCycle();
+            pot.PassCycle();
             
             Assert.That(pot.HasSprout, Is.True);
+        }
+        
+        [Test]
+        public void InWetPotWithSeed_AfterNotEnoughCycles_NotSproutSpawns()
+        {
+            var pot = new Pot();
+            pot.SowSeed("anySeed");
+            pot.Water();
+            
+            pot.PassCycle();
+
+            Assert.That(pot.HasSprout, Is.False);
         }
     }
 }

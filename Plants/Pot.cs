@@ -12,6 +12,7 @@ namespace Plants
         public bool IsWet { get; private set; }
         static TimeSpan AssumedTechDebtTimeToNotWet()
             => TimeSpan.FromDays(1);
+
         #endregion
 
         #region Esto es cohesivo, creemos que una planta, no queremos sacarlo aún.
@@ -26,6 +27,8 @@ namespace Plants
         
         static TimeSpan AssumedTechDebtTimeToSpawnSprout()
             => TimeSpan.FromDays(.75f);
+        static int AssumedTechDebtCyclesToSprout()
+            => 3;
         #endregion
         
         public void SowSeed(string id)
@@ -56,9 +59,14 @@ namespace Plants
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
 
+        private int cyclesCount = 0;
         public void PassCycle()
         {
-            stage = PlantStage.Sprout;
+            cyclesCount++;
+            if (cyclesCount >= AssumedTechDebtCyclesToSprout())
+            {
+                stage = PlantStage.Sprout;
+            }
         }
     }
 }
