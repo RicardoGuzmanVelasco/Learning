@@ -29,6 +29,8 @@ namespace Plants
             => TimeSpan.FromDays(.75f);
         static int AssumedTechDebtCyclesToSprout()
             => 3;
+
+        private CountDown _cyclesToSprout;
         #endregion
         
         public void SowSeed(string id)
@@ -37,6 +39,7 @@ namespace Plants
             Debug.Assert(!string.IsNullOrEmpty(id));
             
             plantId = id;
+            _cyclesToSprout = CountDown.From(AssumedTechDebtCyclesToSprout());
         }
         
         public void Water()
@@ -58,15 +61,13 @@ namespace Plants
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
-
-        private int _cyclesSinceSeeded = 0;
         
         public void PassCycle()
         {
             if(!IsWet)
                 return;
-            _cyclesSinceSeeded++;
-            if (_cyclesSinceSeeded < AssumedTechDebtCyclesToSprout()) 
+            _cyclesToSprout.Down();
+            if(!_cyclesToSprout.IsDone)
                 return;
             stage = PlantStage.Sprout;
         }
