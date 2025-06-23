@@ -1,1 +1,0 @@
-- La maceta está mojada un día, qué significa un día? es un día de tiempo real? es una mala palabra porque se referían a ciclo?
