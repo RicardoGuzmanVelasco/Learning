@@ -8,13 +8,13 @@ namespace Plants.Application;
 public class ToWaterButAsGuilleHadImagined
 {
     WateringCan wateringCan;
-    Carrousel<Pot> carrousel;
+    Garden garden;
 
     
     public Task Run()
     {
         wateringCan.Show();
-        var selectedPot = carrousel.Current;
+        var selectedPot = garden.SelectedPot;
         Debug.Assert(selectedPot is not null);
         return Task.CompletedTask; //Many other stuff.
     }

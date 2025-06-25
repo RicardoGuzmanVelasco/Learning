@@ -6,4 +6,6 @@ public class Garden
     {
         return null;
     }
+
+    public Pot SelectedPot { get; }
 }
