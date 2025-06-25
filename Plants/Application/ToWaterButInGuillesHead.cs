@@ -1,16 +1,20 @@
 ﻿using System.Diagnostics;
+using Plants.Domain;
 
 namespace Plants.Application;
+
+
 
 public class ToWaterButAsGuilleHadImagined
 {
     WateringCan wateringCan;
-    GardenView gardenView;
+    Carrousel<Pot> carrousel;
+
     
     public Task Run()
     {
         wateringCan.Show();
-        var selectedPot = gardenView.SelectedPot;
+        var selectedPot = carrousel.Current;
         Debug.Assert(selectedPot is not null);
         return Task.CompletedTask; //Many other stuff.
     }
