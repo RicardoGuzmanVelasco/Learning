@@ -22,23 +22,32 @@ public class ToWater
     {
         await wateringCan.Show();
 
-        while(true)
-            await RunOnce();
+        bool again;
+        do again = await RunOnce();
+        while (again);
     }
 
-    async Task RunOnce()
+    async Task<bool> RunOnce()
     {
-        var sdf = await wateringCan.SelectPotToWater();
-        Debug.Assert(!sdf.cancel, "Todavía no hemos hecho el escenario de cancelar");
+        var response = await wateringCan.SelectPotToWater();
+        if (response.cancel)
+            return await CancelPath();
         
-
-        var selectedPot = garden.PotWithId(sdf.potId);
+        var selectedPot = garden.PotWithId(response.potId);
         if (selectedPot.IsEmpty)
-            await feedbackView.EmptyPot(sdf.potId);
+            await feedbackView.EmptyPot(response.potId);
         else if (selectedPot.IsWet)
-            await feedbackView.WetPot(sdf.potId);
+            await feedbackView.WetPot(response.potId);
         else
             await HappyPath(selectedPot);
+
+        return true;
+    }
+
+    async Task<bool> CancelPath()
+    {
+        await wateringCan.Hide();
+        return false;
     }
 
     Task HappyPath(Pot selectedPot)

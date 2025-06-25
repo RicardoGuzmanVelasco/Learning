@@ -11,4 +11,6 @@ public interface WateringCan
         public readonly string potId;
         public readonly bool cancel;
     }
+
+    Task Hide();
 }
