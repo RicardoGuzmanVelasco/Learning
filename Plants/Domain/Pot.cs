@@ -1,7 +1,6 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace Plants
+namespace Plants.Domain
 {
     public class Pot
     {

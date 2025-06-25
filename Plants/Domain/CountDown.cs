@@ -1,4 +1,4 @@
-namespace Plants;
+namespace Plants.Domain;
 
 public class CountDown
 {
