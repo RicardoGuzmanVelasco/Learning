@@ -61,6 +61,17 @@ namespace Plants
             
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
+
+        public void PassCycles(int howMany)
+        {
+            Debug.Assert(howMany >= 0);
+            for (var i = 0; i < howMany; i++)
+                PassOneCycle();
+        }
+        public void PassOneCycle()
+        {
+            PassTime(TimeSpan.FromDays(1));
+        }
         
         public void PassCycle()
         {
