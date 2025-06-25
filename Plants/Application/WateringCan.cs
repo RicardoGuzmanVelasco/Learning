@@ -3,6 +3,12 @@
 public interface WateringCan
 {
     Task Show();
-    Task<string> SelectPotToWater();
+    Task<PotSelection> SelectPotToWater();
     Task ToWater();
+
+    readonly struct PotSelection
+    {
+        public readonly string potId;
+        public readonly bool cancel;
+    }
 }

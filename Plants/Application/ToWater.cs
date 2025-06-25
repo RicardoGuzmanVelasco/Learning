@@ -28,13 +28,15 @@ public class ToWater
 
     async Task RunOnce()
     {
-        var selectedPotId = await wateringCan.SelectPotToWater();
+        var sdf = await wateringCan.SelectPotToWater();
+        Debug.Assert(!sdf.cancel, "Todavía no hemos hecho el escenario de cancelar");
         
-        var selectedPot = garden.PotWithId(selectedPotId);
+
+        var selectedPot = garden.PotWithId(sdf.potId);
         if (selectedPot.IsEmpty)
-            await feedbackView.EmptyPot(selectedPotId);
+            await feedbackView.EmptyPot(sdf.potId);
         else if (selectedPot.IsWet)
-            await feedbackView.WetPot(selectedPotId);
+            await feedbackView.WetPot(sdf.potId);
         else
             await HappyPath(selectedPot);
     }
