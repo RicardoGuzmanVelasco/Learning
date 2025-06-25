@@ -6,6 +6,9 @@ public class Garden
     {
         return null;
     }
+}
 
-    public Pot SelectedPot { get; }
+public class SelectedPot
+{
+    public Pot Current { get; }
 }
