@@ -1,0 +1,247 @@
+@startuml Clean Architecture & DDD
+skin rose
+title Software Architecture - Clean Architecture & Domain-Driven Design
+
+package "External Interfaces" {
+  package "Web Layer" {
+    class "UserController" as WebController {
+      - IUserService userService
+      + getUser(id: String): UserResponse
+      + createUser(request: CreateUserRequest): UserResponse
+    }
+    
+    class "UserResponse" as WebResponse {
+      + String id
+      + String name
+      + String email
+      + Date createdAt
+    }
+  }
+  
+  package "Database Layer" {
+    class "UserRepositoryImpl" as RepoImpl {
+      - DatabaseContext context
+      + findById(id: UserId): User
+      + save(user: User): void
+      + delete(id: UserId): void
+    }
+    
+    class "DatabaseContext" as DbContext {
+      + UserTable users
+      + executeQuery(sql: String): ResultSet
+    }
+  }
+  
+  package "External Services" {
+    class "EmailServiceImpl" as EmailImpl {
+      - SmtpClient smtpClient
+      + sendWelcomeEmail(user: User): void
+      + sendPasswordReset(email: Email): void
+    }
+  }
+}
+
+package "Application Layer" {
+  package "Use Cases" {
+    class "CreateUserUseCase" as CreateUser {
+      - IUserRepository userRepository
+      - IEmailService emailService
+      + execute(command: CreateUserCommand): User
+    }
+    
+    class "GetUserUseCase" as GetUser {
+      - IUserRepository userRepository
+      + execute(query: GetUserQuery): User
+    }
+    
+    class "UpdateUserProfileUseCase" as UpdateUser {
+      - IUserRepository userRepository
+      + execute(command: UpdateUserCommand): User
+    }
+  }
+  
+  package "DTOs & Commands" {
+    class "CreateUserCommand" as CreateCmd {
+      + String name
+      + String email
+      + String password
+    }
+    
+    class "GetUserQuery" as GetQuery {
+      + String userId
+    }
+    
+    class "UpdateUserCommand" as UpdateCmd {
+      + String userId
+      + String newName
+      + String newEmail
+    }
+  }
+  
+  package "Services" {
+    interface "IUserService" as IUserSvc {
+      + createUser(command: CreateUserCommand): User
+      + getUser(query: GetUserQuery): User
+      + updateUser(command: UpdateUserCommand): User
+    }
+    
+    class "UserApplicationService" as UserAppSvc {
+      - CreateUserUseCase createUserUseCase
+      - GetUserUseCase getUserUseCase
+      - UpdateUserProfileUseCase updateUserUseCase
+      + createUser(command: CreateUserCommand): User
+      + getUser(query: GetUserQuery): User
+      + updateUser(command: UpdateUserCommand): User
+    }
+  }
+}
+
+package "Domain Layer" {
+  package "Entities" {
+    class "User" as DomainUser {
+      - UserId id
+      - Name name
+      - Email email
+      - Password password
+      - Date createdAt
+      - UserStatus status
+      + changeName(newName: Name): void
+      + changeEmail(newEmail: Email): void
+      + activate(): void
+      + deactivate(): void
+      + isActive(): boolean
+    }
+    
+    class "UserProfile" as Profile {
+      - UserId userId
+      - ProfilePicture picture
+      - Biography bio
+      - Preferences preferences
+      + updateBiography(bio: String): void
+      + updatePicture(picture: ProfilePicture): void
+    }
+  }
+  
+  package "Value Objects" {
+    class "UserId" as ValueUserId {
+      - String value
+      + UserId(value: String)
+      + getValue(): String
+      + equals(other: UserId): boolean
+    }
+    
+    class "Email" as ValueEmail {
+      - String value
+      + Email(value: String)
+      + getValue(): String
+      + isValid(): boolean
+      + getDomain(): String
+    }
+    
+    class "Name" as ValueName {
+      - String firstName
+      - String lastName
+      + Name(first: String, last: String)
+      + getFullName(): String
+      + getInitials(): String
+    }
+  }
+  
+  package "Domain Services" {
+    interface "IUserDomainService" as IDomainSvc {
+      + isEmailUnique(email: Email): boolean
+      + generateUserId(): UserId
+    }
+    
+    class "UserDomainService" as DomainSvc {
+      - IUserRepository userRepository
+      + isEmailUnique(email: Email): boolean
+      + generateUserId(): UserId
+    }
+  }
+  
+  package "Repository Interfaces" {
+    interface "IUserRepository" as IUserRepo {
+      + findById(id: UserId): User
+      + findByEmail(email: Email): User
+      + save(user: User): void
+      + delete(id: UserId): void
+      + existsByEmail(email: Email): boolean
+    }
+    
+    interface "IEmailService" as IEmailSvc {
+      + sendWelcomeEmail(user: User): void
+      + sendPasswordReset(email: Email): void
+    }
+  }
+  
+  package "Domain Events" {
+    abstract class "DomainEvent" as DomainEvt {
+      - Date occurredOn
+      - String eventId
+      + getOccurredOn(): Date
+      + getEventId(): String
+    }
+    
+    class "UserCreatedEvent" as UserCreated extends DomainEvt {
+      - UserId userId
+      - Email email
+      + getUserId(): UserId
+      + getEmail(): Email
+    }
+    
+    class "UserEmailChangedEvent" as EmailChanged extends DomainEvt {
+      - UserId userId
+      - Email oldEmail
+      - Email newEmail
+    }
+  }
+}
+
+package "Infrastructure Layer" {
+  package "Event Handling" {
+    class "UserEventHandler" as EventHandler {
+      - IEmailService emailService
+      + handle(event: UserCreatedEvent): void
+      + handle(event: UserEmailChangedEvent): void
+    }
+  }
+}
+
+' Dependency directions (Clean Architecture)
+WebController --> IUserSvc : depends on
+UserAppSvc ..|> IUserSvc : implements
+UserAppSvc --> CreateUser : uses
+UserAppSvc --> GetUser : uses
+UserAppSvc --> UpdateUser : uses
+
+CreateUser --> IUserRepo : depends on
+CreateUser --> IEmailSvc : depends on
+GetUser --> IUserRepo : depends on
+UpdateUser --> IUserRepo : depends on
+
+RepoImpl ..|> IUserRepo : implements
+EmailImpl ..|> IEmailSvc : implements
+
+DomainUser *-- ValueUserId : contains
+DomainUser *-- ValueEmail : contains
+DomainUser *-- ValueName : contains
+DomainUser ..> UserCreated : publishes
+DomainUser ..> EmailChanged : publishes
+
+Profile *-- ValueUserId : contains
+DomainSvc ..|> IDomainSvc : implements
+DomainSvc --> IUserRepo : depends on
+
+EventHandler --> UserCreated : handles
+EventHandler --> EmailChanged : handles
+EventHandler --> IEmailSvc : depends on
+
+' Notes
+note right of "Domain Layer" : Contains business logic\nand domain rules.\nNo dependencies on\nexternal concerns.
+note right of "Application Layer" : Orchestrates domain objects\nto fulfill use cases.\nDepends only on domain.
+note right of "External Interfaces" : Adapters that implement\ninterfaces defined\nin inner layers.
+note bottom of ValueUserId : Value objects are\nimmutable and have\nno identity.
+note bottom of DomainUser : Entities have identity\nand encapsulate\nbusiness logic.
+
+@enduml

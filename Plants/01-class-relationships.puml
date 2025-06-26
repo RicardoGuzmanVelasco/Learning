@@ -1,0 +1,87 @@
+@startuml Class Relationships and Inheritance
+skin rose
+
+namespace Core {
+  abstract class Vehicle {
+    # String model
+    # int year
+    # Engine engine
+    + start(): void
+    + stop(): void
+    {abstract} + getMaxSpeed(): int
+  }
+  
+  class Engine {
+    - int horsepower
+    - String fuelType
+    + ignite(): void
+    + shutdown(): void
+  }
+  
+  class Transmission {
+    - int gears
+    - String type
+    + shiftGear(gear: int): void
+  }
+}
+
+namespace Vehicles {
+  class Car {
+    - int doors
+    - boolean isElectric
+    + openDoor(doorNumber: int): void
+    + getMaxSpeed(): int
+  }
+  
+  class Motorcycle {
+    - boolean hasSidecar
+    - String bikeType
+    + performWheelie(): void
+    + getMaxSpeed(): int
+  }
+  
+  class Truck {
+    - float cargoCapacity
+    - boolean hasTrailer
+    + loadCargo(weight: float): void
+    + getMaxSpeed(): int
+  }
+}
+
+namespace Fleet {
+  class VehicleFleet {
+    - List<Vehicle> vehicles
+    - String companyName
+    + addVehicle(vehicle: Vehicle): void
+    + removeVehicle(vehicleId: String): void
+    + getTotalVehicles(): int
+  }
+  
+  class MaintenanceRecord {
+    - Date serviceDate
+    - String description
+    - float cost
+    + scheduleService(): void
+  }
+
+  VehicleFleet -- MaintenanceRecord #transparent
+}
+
+' Relationships
+Core.Vehicle ||--o{ Core.Engine : "has"
+Core.Vehicle ||--o{ Core.Transmission : "has"
+Fleet.VehicleFleet *-- Core.Vehicle : "contains"
+Core.Vehicle ||--o{ Fleet.MaintenanceRecord : "has service history"
+
+Vehicles.Car ..|> Core.Vehicle : "inherits"
+Vehicles.Motorcycle ..|> Core.Vehicle : "inherits"
+Vehicles.Truck ..|> Core.Vehicle : "inherits"
+' Nested classes
+class Core.Vehicle {
+  class ServiceInfo {
+    - Date lastService
+    - int mileage
+  }
+}
+
+@enduml

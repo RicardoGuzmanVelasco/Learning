@@ -1,0 +1,197 @@
+@startuml Component and Deployment Architecture
+skin rose
+title Software Architecture - Component & Deployment View
+
+package "Development Environment" {
+  folder "Source Code" {
+    component "Frontend App" as FE_Dev {
+      + React Components
+      + TypeScript
+      + Webpack Build
+    }
+    
+    component "Backend API" as BE_Dev {
+      + Express.js Server
+      + Business Logic
+      + Database Layer
+    }
+    
+    component "Shared Libraries" as Lib_Dev {
+      + Common Utilities
+      + Type Definitions
+      + Validation Rules
+    }
+  }
+  
+  folder "Build Artifacts" {
+    artifact "frontend.bundle.js" as FE_Bundle
+    artifact "backend.jar" as BE_JAR
+    artifact "shared-lib.jar" as LIB_JAR
+  }
+}
+
+package "Staging Environment" {
+  node "Staging Server" as StagingNode {
+    component "Web Server" as WebServer_Staging {
+      + Nginx
+      + SSL Termination
+      + Static File Serving
+    }
+    
+    component "Application Server" as AppServer_Staging {
+      + Node.js Runtime
+      + API Endpoints
+      + Business Logic
+    }
+    
+    database "PostgreSQL" as DB_Staging {
+      + Test Data
+      + Schema Migrations
+      + Performance Testing
+    }
+  }
+}
+
+package "Production Environment" {
+  cloud "AWS Cloud" {
+    package "Frontend Deployment" {
+      AmazonCloudFront(CDN, "CloudFront CDN", "Global Content Delivery")
+      AmazonS3(S3_Frontend, "S3 Bucket", "Static Website Hosting")
+    }
+    
+    package "Backend Deployment" {
+      node "Load Balancer" as LB {
+        component "ALB" as ALB {
+          + Application Load Balancer
+          + Health Checks
+          + SSL Termination
+        }
+      }
+      
+      node "API Server 1" as API1 {
+        AmazonEC2(EC2_1, "EC2 Instance", "t3.large")
+        component "API App 1" as App1 {
+          + Express.js
+          + PM2 Process Manager
+          + Monitoring Agent
+        }
+      }
+      
+      node "API Server 2" as API2 {
+        AmazonEC2(EC2_2, "EC2 Instance", "t3.large")
+        component "API App 2" as App2 {
+          + Express.js
+          + PM2 Process Manager
+          + Monitoring Agent
+        }
+      }
+      
+      node "Background Workers" as Workers {
+        AmazonEC2(EC2_Worker, "EC2 Instance", "t3.medium")
+        component "Job Processor" as JobProc {
+          + Queue Workers
+          + Scheduled Tasks
+          + Email Processing
+        }
+      }
+    }
+    
+    package "Data Layer" {
+      AmazonRDS(RDS_Prod, "RDS PostgreSQL", "Multi-AZ Deployment")
+      
+      node "Cache Cluster" as CacheCluster {
+        database "Redis Primary" as Redis1 {
+          + Session Storage
+          + Query Cache
+          + Rate Limiting
+        }
+        
+        database "Redis Replica" as Redis2 {
+          + Read Replica
+          + Failover Support
+        }
+      }
+    }
+    
+    package "Message Queue" {
+      node "Message Broker" as MQ {
+        component "RabbitMQ Cluster" as RMQ {
+          + Message Persistence
+          + High Availability
+          + Dead Letter Queues
+        }
+      }
+    }
+  }
+}
+
+package "External Services" {
+  cloud "Third Party" {
+    component "Payment Gateway" as PaymentSvc {
+      + Stripe API
+      + Webhook Handling
+      + PCI Compliance
+    }
+    
+    component "Email Service" as EmailSvc {
+      + SendGrid API
+      + Template Management
+      + Analytics
+    }
+    
+    component "Monitoring" as MonitoringSvc {
+      + Datadog
+      + Application Metrics
+      + Log Aggregation
+    }
+  }
+}
+
+' Development to build
+FE_Dev --> FE_Bundle : builds
+BE_Dev --> BE_JAR : builds
+Lib_Dev --> LIB_JAR : builds
+
+' Development dependencies
+FE_Dev ..> Lib_Dev : imports
+BE_Dev ..> Lib_Dev : imports
+
+' Staging deployment
+FE_Bundle --> WebServer_Staging : deploys
+BE_JAR --> AppServer_Staging : deploys
+AppServer_Staging --> DB_Staging : connects
+
+' Production deployment
+FE_Bundle --> S3_Frontend : deploys
+BE_JAR --> App1 : deploys
+BE_JAR --> App2 : deploys
+LIB_JAR --> JobProc : deploys
+
+' Production runtime connections
+CDN --> S3_Frontend : caches
+ALB --> App1 : routes traffic
+ALB --> App2 : routes traffic
+App1 --> RDS_Prod : queries
+App2 --> RDS_Prod : queries
+App1 --> Redis1 : caches
+App2 --> Redis1 : caches
+Redis1 --> Redis2 : replicates
+App1 --> RMQ : publishes
+App2 --> RMQ : publishes
+RMQ --> JobProc : delivers messages
+JobProc --> RDS_Prod : updates
+
+' External integrations
+App1 --> PaymentSvc : API calls
+App2 --> PaymentSvc : API calls
+JobProc --> EmailSvc : sends emails
+App1 --> MonitoringSvc : metrics
+App2 --> MonitoringSvc : metrics
+JobProc --> MonitoringSvc : metrics
+
+note right of "Development Environment" : Local development\nwith hot reloading\nand debugging
+note right of "Staging Environment" : Pre-production testing\nwith production-like\ndata and configuration
+note right of "Production Environment" : High availability\nscalable deployment\nwith redundancy
+note bottom of CacheCluster : Redis cluster provides\nhigh availability\nand data persistence
+
+@enduml
