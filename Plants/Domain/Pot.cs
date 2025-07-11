@@ -55,9 +55,6 @@ namespace Plants.Domain
             Debug.Assert(delta >= TimeSpan.Zero);
             timeSinceLastWatering += delta;
             
-            if (IsWet && timeSinceLastWatering > AssumedTechDebtTimeToSpawnSprout())
-                stage = PlantStage.Sprout;
-            
             IsWet = timeSinceLastWatering <= AssumedTechDebtTimeToNotWet();
         }
 
@@ -69,6 +66,7 @@ namespace Plants.Domain
         }
         public void PassOneCycle()
         {
+            PassCycle();
             PassTime(TimeSpan.FromDays(1));
         }
         

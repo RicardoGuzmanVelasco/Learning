@@ -131,7 +131,7 @@ namespace Plants
             pot.SowSeed("anySeed");
             pot.Water();
             
-            pot.PassCycle();
+            pot.PassOneCycle();
 
             Assert.That(pot.HasSprout, Is.False);
         }
@@ -142,9 +142,9 @@ namespace Plants
             var pot = new Pot();
             pot.SowSeed("anySeed");
             
-            pot.PassCycle();
-            pot.PassCycle();
-            pot.PassCycle();
+            pot.PassOneCycle();
+            pot.PassOneCycle();
+            pot.PassOneCycle();
 
             Assert.That(pot.HasSprout, Is.False);
         }
