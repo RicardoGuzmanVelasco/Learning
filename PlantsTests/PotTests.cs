@@ -84,7 +84,7 @@ namespace Plants
             pot.SowSeed("anySeed");
             pot.Water();
             
-            pot.PassOneCycle();          
+            pot.PassCycles(3);          
             
             Assert.That(pot.HasSprout, Is.True);
         }
@@ -107,7 +107,7 @@ namespace Plants
             pot.SowSeed("anySeed");
             pot.Water();
             
-            pot.PassTime(TimeSpan.FromDays(0.5));
+            pot.PassCycles(1);
             
             Assert.That(pot.HasSprout, Is.False);
         }

@@ -25,7 +25,7 @@ namespace Plants.Domain
         public bool HasFlowers => stage == PlantStage.Flowers;
         
         static TimeSpan AssumedTechDebtTimeToSpawnSprout()
-            => TimeSpan.FromDays(.75f);
+            => TimeSpan.FromDays(2);
         static int AssumedTechDebtCyclesToSprout()
             => 3;
 
@@ -49,8 +49,8 @@ namespace Plants.Domain
             IsWet = true;
             timeSinceLastWatering = TimeSpan.Zero;
         }
-        
-        public void PassTime(TimeSpan delta)
+
+        private void PassTime(TimeSpan delta)
         {
             Debug.Assert(delta >= TimeSpan.Zero);
             timeSinceLastWatering += delta;
