@@ -10,7 +10,7 @@ namespace Plants.Domain
         TimeSpan timeSinceLastWatering;
         public bool IsWet { get; private set; }
         static TimeSpan AssumedTechDebtTimeToNotWet()
-            => TimeSpan.FromDays(1);
+            => TimeSpan.FromDays(4);
 
         #endregion
 
